@@ -46,7 +46,7 @@ define('SITEURL', 'http://localhost/NishiMaru/'); ?>
 
 			<h2 class="text-center text-white">Login</h2>
 
-			<form action="index.php" method="POST" class="order">
+			<form action="login.php" method="POST" class="order">
 
 				<fieldset>
 					<legend>Enter Credentials</legend>
@@ -55,7 +55,7 @@ define('SITEURL', 'http://localhost/NishiMaru/'); ?>
 
 					<div class="order-label">Password</div>
 					<input type="password" name="password" placeholder="" class="input-responsive" required>
-					<a href="home.php"><input type="submit" name="submit" value="login" class="btn btn-primary"></a>
+					<input type="submit" name="submit" value="login" class="btn btn-primary">
 					<p class="text-center text-white">Not yet a member? <a href="Signup.php">Sign up</a></p>
 				</fieldset>
 
@@ -68,4 +68,30 @@ define('SITEURL', 'http://localhost/NishiMaru/'); ?>
 </html>
 <!-- Footer Section Ends Here -->
 
-<?php include('partials-front/footer.php'); ?>
+<?php include('partials-front/footer.php'); 
+require('config/constants.php');
+if(isset($_POST['submit'])){
+
+    $username = mysqli_real_escape_string($db,$_POST['username']);
+    $password = mysqli_real_escape_string($db,$_POST['password']);
+	session_start();
+
+    $query = "SELECT * FROM tbl_user where user_name = '$username' and user_pword = '$password'";
+	$result = mysqli_query($db, $query) or die('Unable to Login');
+	$rows = mysqli_num_rows($result);
+
+	while($row = $result->fetch_assoc()){
+		$_SESSION['username'] = $row['user_name'];
+		$_SESSION['password'] = $row['user_pword'];
+		$_SESSION['type'] = $row['user_type'];
+		$_SESSION['id'] = $row['user_id'];
+
+		if ($_SESSION['type'] == 'Customer'){
+			header("Location: index.php");
+		  }
+		else{
+			echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+	  }
+ 	}echo '<script>alert("Username or Password incorrect Please Try Again")</script>';
+}
+?>

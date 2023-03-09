@@ -3,6 +3,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <!-- Important to make website responsive -->
@@ -12,7 +13,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
     <!-- Link our CSS file -->
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 </head>
-
+<?php include('logcheck.php');?>
 <body>
     <!-- Navbar Section Starts Here -->
     <section class="navbar">
@@ -36,6 +37,9 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
                     </li>
                     <li>
                         <a href="<?php echo SITEURL; ?>logout.php">Signout</a>
+                    </li>
+                    <li>
+                        Welcome, <?php echo $_SESSION['username']; ?>!
                     </li>
                 </ul>
             </div>
