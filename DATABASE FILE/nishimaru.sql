@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2023 at 06:43 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Mar 14, 2023 at 04:46 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `onlinefoodorder`
+-- Database: `nishimaru`
 --
 
 -- --------------------------------------------------------
@@ -31,14 +31,14 @@ CREATE TABLE `tbl_admin` (
   `id` int(10) UNSIGNED NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `pword` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_admin`
 --
 
-INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `password`) VALUES
+INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `pword`) VALUES
 (9, 'Liam Johnson', 'liam', 'E10ADC3949BA59ABBE56E057F20F883E'),
 (10, 'Ramsey', 'ramsey', 'E10ADC3949BA59ABBE56E057F20F883E'),
 (12, 'Administrator', 'admin', 'E10ADC3949BA59ABBE56E057F20F883E');
@@ -55,7 +55,7 @@ CREATE TABLE `tbl_category` (
   `image_name` varchar(255) NOT NULL,
   `featured` varchar(10) NOT NULL,
   `active` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_category`
@@ -64,6 +64,35 @@ CREATE TABLE `tbl_category` (
 INSERT INTO `tbl_category` (`id`, `title`, `image_name`, `featured`, `active`) VALUES
 (10, 'Sushi Nigiri', 'nigiri.jpg', 'Yes', 'Yes'),
 (11, 'Sushi Rolls', 'rolls.jpg', 'Yes', 'Yes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_cust`
+--
+
+CREATE TABLE `tbl_cust` (
+  `cust_id` int(11) NOT NULL,
+  `cust_fname` varchar(255) NOT NULL,
+  `cust_lname` varchar(255) NOT NULL,
+  `cust_email` varchar(255) NOT NULL,
+  `cust_uname` varchar(255) NOT NULL,
+  `cust_pword` varchar(255) NOT NULL,
+  `cust_phone` varchar(255) NOT NULL,
+  `cust_street` varchar(255) NOT NULL,
+  `cust_brgy` varchar(255) NOT NULL,
+  `cust_city` varchar(255) NOT NULL,
+  `cust_zip` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_cust`
+--
+
+INSERT INTO `tbl_cust` (`cust_id`, `cust_fname`, `cust_lname`, `cust_email`, `cust_uname`, `cust_pword`, `cust_phone`, `cust_street`, `cust_brgy`, `cust_city`, `cust_zip`) VALUES
+(1, 'Joseph ', 'Wenceslao', 'jwenceslao@sskin.com', 'jwenceslao', '12345', '1234567890', 'Pablo Ocampo', 'Sr. Exit', 'Makati', '1702'),
+(2, 'Joseph ', 'Wenceslao', 'jwenceslao@sskin.com', 'jwenceslao', '12345', '1234567890', 'Pablo Ocampo', 'Sr. Exit', 'Makati', '1702'),
+(3, 'Bryce Stephen', 'Halnin', 'bsphalnin@asdasa', 'bsphalnin', '12345', '1234567890', 'Pablo', 'Ocampo', 'Makati', '1991');
 
 -- --------------------------------------------------------
 
@@ -80,7 +109,7 @@ CREATE TABLE `tbl_food` (
   `category_id` int(10) UNSIGNED NOT NULL,
   `featured` varchar(10) NOT NULL,
   `active` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_food`
@@ -114,14 +143,37 @@ CREATE TABLE `tbl_order` (
   `customer_contact` varchar(20) NOT NULL,
   `customer_email` varchar(150) NOT NULL,
   `customer_address` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_order`
 --
 
 INSERT INTO `tbl_order` (`id`, `food`, `price`, `qty`, `total`, `order_date`, `status`, `customer_name`, `customer_contact`, `customer_email`, `customer_address`) VALUES
-(12, 'Salmon Maki Roll', '250.00', 1, '250.00', '2023-02-02 06:09:23', 'Ordered', 'cholo', '241234134', 'eboc@ggmial.com', 'house');
+(12, 'Salmon Maki Roll', '250.00', 1, '250.00', '2023-02-02 06:09:23', 'Ordered', 'cholo', '241234134', 'eboc@ggmial.com', 'house'),
+(13, 'Salmon and Tuna Maki Roll', '250.00', 12, '3000.00', '2023-03-08 03:24:47', 'Ordered', 'Joseph', '12345', 'jwenceslao@sskin.com', 'asdasd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `user_pword` varchar(255) NOT NULL,
+  `user_type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_pword`, `user_type`) VALUES
+(1, 'jwenceslao', '12345', 'Customer'),
+(2, 'jwenceslao', '12345', 'Customer'),
+(3, 'bsphalnin', '12345', 'Customer');
 
 --
 -- Indexes for dumped tables
@@ -140,6 +192,12 @@ ALTER TABLE `tbl_category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_cust`
+--
+ALTER TABLE `tbl_cust`
+  ADD PRIMARY KEY (`cust_id`);
+
+--
 -- Indexes for table `tbl_food`
 --
 ALTER TABLE `tbl_food`
@@ -150,6 +208,12 @@ ALTER TABLE `tbl_food`
 --
 ALTER TABLE `tbl_order`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -168,6 +232,12 @@ ALTER TABLE `tbl_category`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `tbl_cust`
+--
+ALTER TABLE `tbl_cust`
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tbl_food`
 --
 ALTER TABLE `tbl_food`
@@ -177,7 +247,23 @@ ALTER TABLE `tbl_food`
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD CONSTRAINT `tbl_user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_cust` (`cust_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
