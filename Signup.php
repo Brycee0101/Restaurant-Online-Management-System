@@ -40,7 +40,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
 			<div class="menu text-right">
 				<ul>
 					<li>
-						<a href=">Login.php">Login</a>
+						<a href="login.php">Login</a>
 					</li>
 				</ul>
 			</div>
@@ -108,30 +108,39 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
 <?php include('partials-front/footer.php'); 
 
 require('config/constants.php');
-if(isset($_POST['submit'])){
 
+if(isset($_POST['submit'])){
     $fname = mysqli_real_escape_string($db,$_POST['fname']);
     $lname = mysqli_real_escape_string($db,$_POST['lname']);
     $username = mysqli_real_escape_string($db,$_POST['username']);
     $email = mysqli_real_escape_string($db,$_POST['email']);
     $password = mysqli_real_escape_string($db,$_POST['password']);
     $phone = mysqli_real_escape_string($db,$_POST['contact']);
-	$ad1 = mysqli_real_escape_string($db,$_POST['ad1']);
-	$ad2 = mysqli_real_escape_string($db,$_POST['ad2']);
-	$city = mysqli_real_escape_string($db,$_POST['city']);
-	$zip = mysqli_real_escape_string($db,$_POST['zip']);
+    $ad1 = mysqli_real_escape_string($db,$_POST['ad1']);
+    $ad2 = mysqli_real_escape_string($db,$_POST['ad2']);
+    $city = mysqli_real_escape_string($db,$_POST['city']);
+    $zip = mysqli_real_escape_string($db,$_POST['zip']);
 
-    $query = "INSERT INTO tbl_cust values('','$fname','$lname','$email','$username','$password','$phone','$ad1','$ad2','$city','$zip')";
-    $exec = $db->query($query);
+    // Check if the customer already exists in the database
+    $check_query = "SELECT * FROM tbl_cust WHERE cust_fname='$fname' AND cust_lname='$lname'";
+    $check_result = mysqli_query($db, $check_query);
+    if (mysqli_num_rows($check_result) > 0) {
+        // Display an error message if the customer already exists
+		echo "<script>alert('Error: This account already exists.')</script>";
+    } else {
+        // Insert the new customer data into the database
+        $query = "INSERT INTO tbl_cust values('','$fname','$lname','$email','$username','$password','$phone','$ad1','$ad2','$city','$zip')";
+        $exec = $db->query($query);
 
-    $queryy = "INSERT INTO tbl_user values('','$username','$password','Customer')";
-    $execc = $db->query($queryy);
-    if($exec){
-        ?>
-        <script>
-                window.location="login.php";
-        </script>
-        <?php
+        $queryy = "INSERT INTO tbl_user values('','$username','$password','Customer')";
+        $execc = $db->query($queryy);
+        if($exec){
+            ?>
+            <script>
+                    window.location="login.php";
+            </script>
+            <?php
+        }
     }
 }
 ?>

@@ -281,3 +281,13 @@ fieldset {
     width: 100%;
   }
 }
+/* CSS for Cartview */
+.cartview-table {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+
+.cartview-th, .cartview-td {
+  border: 1px solid white;
+  padding: 8px;
+}

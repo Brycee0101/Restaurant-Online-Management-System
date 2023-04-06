@@ -19,7 +19,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
     <section class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="#" title="Logo">
+                <a href="index.php" title="Logo">
                     <img src="images/logo.png" alt="Restaurant Logo" class="img-responsive">
                 </a>
             </div>
@@ -34,6 +34,9 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
                     </li>
                     <li>
                         <a href="<?php echo SITEURL; ?>foods.php">Foods</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo SITEURL; ?>cartview.php">Cart🛒</a>
                     </li>
                     <li>
                         <a href="<?php echo SITEURL; ?>logout.php">Signout</a>
