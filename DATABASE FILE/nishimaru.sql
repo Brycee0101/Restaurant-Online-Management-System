@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 14, 2023 at 04:46 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Apr 06, 2023 at 01:39 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `tbl_admin` (
   `full_name` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `pword` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `tbl_admin`
@@ -46,6 +46,32 @@ INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `pword`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_cart`
+--
+
+CREATE TABLE `tbl_cart` (
+  `cart_id` int(11) NOT NULL,
+  `cart_food` varchar(255) DEFAULT NULL,
+  `cart_price` int(11) DEFAULT NULL,
+  `cart_qty` int(11) DEFAULT NULL,
+  `cart_total` int(11) DEFAULT NULL,
+  `cart_custfname` varchar(255) NOT NULL,
+  `cart_custlname` varchar(255) NOT NULL,
+  `cart_contact` bigint(20) DEFAULT NULL,
+  `cart_email` varchar(255) DEFAULT NULL,
+  `cart_address` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_cart`
+--
+
+INSERT INTO `tbl_cart` (`cart_id`, `cart_food`, `cart_price`, `cart_qty`, `cart_total`, `cart_custfname`, `cart_custlname`, `cart_contact`, `cart_email`, `cart_address`) VALUES
+(2, 'Mixed Maki Set', 280, 105, 28000, 'Bryce Stephen', 'Halnin', 1234567890, 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_category`
 --
 
@@ -55,7 +81,7 @@ CREATE TABLE `tbl_category` (
   `image_name` varchar(255) NOT NULL,
   `featured` varchar(10) NOT NULL,
   `active` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `tbl_category`
@@ -83,7 +109,7 @@ CREATE TABLE `tbl_cust` (
   `cust_brgy` varchar(255) NOT NULL,
   `cust_city` varchar(255) NOT NULL,
   `cust_zip` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_cust`
@@ -91,7 +117,6 @@ CREATE TABLE `tbl_cust` (
 
 INSERT INTO `tbl_cust` (`cust_id`, `cust_fname`, `cust_lname`, `cust_email`, `cust_uname`, `cust_pword`, `cust_phone`, `cust_street`, `cust_brgy`, `cust_city`, `cust_zip`) VALUES
 (1, 'Joseph ', 'Wenceslao', 'jwenceslao@sskin.com', 'jwenceslao', '12345', '1234567890', 'Pablo Ocampo', 'Sr. Exit', 'Makati', '1702'),
-(2, 'Joseph ', 'Wenceslao', 'jwenceslao@sskin.com', 'jwenceslao', '12345', '1234567890', 'Pablo Ocampo', 'Sr. Exit', 'Makati', '1702'),
 (3, 'Bryce Stephen', 'Halnin', 'bsphalnin@asdasa', 'bsphalnin', '12345', '1234567890', 'Pablo', 'Ocampo', 'Makati', '1991');
 
 -- --------------------------------------------------------
@@ -109,7 +134,7 @@ CREATE TABLE `tbl_food` (
   `category_id` int(10) UNSIGNED NOT NULL,
   `featured` varchar(10) NOT NULL,
   `active` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `tbl_food`
@@ -143,7 +168,7 @@ CREATE TABLE `tbl_order` (
   `customer_contact` varchar(20) NOT NULL,
   `customer_email` varchar(150) NOT NULL,
   `customer_address` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `tbl_order`
@@ -164,7 +189,7 @@ CREATE TABLE `tbl_user` (
   `user_name` varchar(255) NOT NULL,
   `user_pword` varchar(255) NOT NULL,
   `user_type` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_user`
@@ -172,7 +197,6 @@ CREATE TABLE `tbl_user` (
 
 INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_pword`, `user_type`) VALUES
 (1, 'jwenceslao', '12345', 'Customer'),
-(2, 'jwenceslao', '12345', 'Customer'),
 (3, 'bsphalnin', '12345', 'Customer');
 
 --
@@ -184,6 +208,12 @@ INSERT INTO `tbl_user` (`user_id`, `user_name`, `user_pword`, `user_type`) VALUE
 --
 ALTER TABLE `tbl_admin`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_cart`
+--
+ALTER TABLE `tbl_cart`
+  ADD PRIMARY KEY (`cart_id`);
 
 --
 -- Indexes for table `tbl_category`
@@ -226,6 +256,12 @@ ALTER TABLE `tbl_admin`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `tbl_cart`
+--
+ALTER TABLE `tbl_cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tbl_category`
 --
 ALTER TABLE `tbl_category`
@@ -254,16 +290,6 @@ ALTER TABLE `tbl_order`
 --
 ALTER TABLE `tbl_user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `tbl_user`
---
-ALTER TABLE `tbl_user`
-  ADD CONSTRAINT `tbl_user_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_cust` (`cust_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
