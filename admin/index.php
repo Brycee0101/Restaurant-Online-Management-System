@@ -61,7 +61,7 @@
                     <?php 
                         //Creat SQL Query to Get Total Revenue Generated
                         //Aggregate Function in SQL
-                        $sql4 = "SELECT SUM(total) AS Total FROM tbl_order WHERE status='Delivered'";
+                        $sql4 = "SELECT SUM(order_total) AS total FROM tbl_order WHERE order_status='Ordered'";
 
                         //Execute the Query
                         $res4 = mysqli_query($db, $sql4);
@@ -70,20 +70,20 @@
                         $row4 = mysqli_fetch_assoc($res4);
                         
                         //GEt the Total REvenue
-                        $total_revenue = $row4['Total'];
+                        $total_revenue = $row4['total'];
 
                     ?>
 
                     <h1>PHP&nbsp;<?php echo $total_revenue; ?></h1>
                     <br />
-                    Revenue Generated
+                    Generated Revenue
                 </div>
 
                 <div class="col-4 text-center">
                     
                     <?php 
                         //Sql Query 
-                        $sql6 = "SELECT * FROM tbl_order WHERE status = 'Ordered'";
+                        $sql6 = "SELECT * FROM tbl_order WHERE order_status = 'Ordered'";
                         //Execute Query
                         $res6 = mysqli_query($db, $sql6);
                         //Count Rows
@@ -99,7 +99,7 @@
                     
                     <?php 
                         //Sql Query 
-                        $sql7 = "SELECT * FROM tbl_order WHERE status = 'On Delivery'";
+                        $sql7 = "SELECT * FROM tbl_order WHERE order_status = 'On Delivery'";
                         //Execute Query
                         $res7 = mysqli_query($db, $sql7);
                         //Count Rows
@@ -116,7 +116,7 @@
                     
                     <?php 
                         //Sql Query 
-                        $sql7 = "SELECT * FROM tbl_order WHERE status = 'Cancelled'";
+                        $sql7 = "SELECT * FROM tbl_order WHERE order_status = 'Cancelled'";
                         //Execute Query
                         $res7 = mysqli_query($db, $sql7);
                         //Count Rows

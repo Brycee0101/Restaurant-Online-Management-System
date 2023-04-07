@@ -1,4 +1,6 @@
-<?php include('partials/menu.php'); ?>
+<?php include('partials/menu.php');
+define('SITEURL', 'http://localhost/NishiMaru/');
+?>
 
 <?php 
     //CHeck whether id is set or not 

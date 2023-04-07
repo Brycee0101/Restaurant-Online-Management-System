@@ -1,4 +1,6 @@
-<?php include('partials/menu.php'); ?>
+<?php include('partials/menu.php');
+define('SITEURL', 'http://localhost/NishiMaru/');
+?>
 
 <div class="main-content">
     <div class="wrapper">
@@ -33,7 +35,7 @@
 
                     <?php 
                         //Get all the orders from database
-                        $sql = "SELECT * FROM tbl_order ORDER BY id DESC"; // DIsplay the Latest Order at First
+                        $sql = "SELECT * FROM tbl_order ORDER BY order_id DESC"; // DIsplay the Latest Order at First
                         //Execute Query
                         $res = mysqli_query($db, $sql);
                         //Count the Rows
@@ -47,14 +49,14 @@
                             while($row=mysqli_fetch_assoc($res))
                             {
                                 //Get all the order details
-                                $id = $row['id'];
-                                $food = $row['food'];
-                                $price = $row['price'];
-                                $qty = $row['qty'];
-                                $total = $row['total'];
+                                $id = $row['order_id'];
+                                $food = $row['order_food'];
+                                $price = $row['order_price'];
+                                $qty = $row['order_qty'];
+                                $total = $row['order_total'];
                                 $order_date = $row['order_date'];
-                                $status = $row['status'];
-                                $customer_name = $row['customer_name'];
+                                $status = $row['order_status'];
+                                $customer_name = $row['order_custfname'] ." ". $row['order_custlname'];
                                 $customer_contact = $row['customer_contact'];
                                 $customer_email = $row['customer_email'];
                                 $customer_address = $row['customer_address'];

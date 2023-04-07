@@ -1,4 +1,6 @@
-<?php include('partials/menu.php'); ?>
+<?php include('partials/menu.php'); 
+define('SITEURL', 'http://localhost/NishiMaru/');
+?>
 
 <div class="main-content">
     <div class="wrapper">

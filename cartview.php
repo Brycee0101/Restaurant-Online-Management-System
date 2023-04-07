@@ -67,7 +67,7 @@
         if (checkoutCart($db, $fname, $lname)) {
             echo "<script>alert('Food Ordered Successfully.'); window.location.href='".SITEURL."orderview.php'</script>";
         } else {
-            echo "<script>alert('Order Failed to Checkout.'); window.location.href='".SITEURL."cartview.php'</script>";
+            echo "<script>alert('Order Failed to Checkout.'); window.location.href='".SITEURL."orderview.php'</script>";
         }
     }
 

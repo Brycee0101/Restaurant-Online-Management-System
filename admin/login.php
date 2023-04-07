@@ -1,4 +1,7 @@
-<?php include('../config/constants.php'); ?>
+<?php include('../config/constants.php'); 
+
+define('SITEURL', 'http://localhost/NishiMaru/');
+?>
 
 <html>
     <head>
@@ -69,7 +72,8 @@
 				
             $_SESSION['username'] = $row['username'];
             $_SESSION['password'] = $row['pword'];
-            header('location:'.SITEURL.'admin/index.php');
+            session_start();
+            echo "<script>window.location.href='".SITEURL."admin/index.php'</script>";
         }
 
     }

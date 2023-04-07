@@ -1,4 +1,6 @@
 <?php 
+
+define('SITEURL', 'http://localhost/NishiMaru/');
     //Include constants.php for SITEURL
     include('../config/constants.php');
     //1. Destory the Session
