@@ -21,7 +21,7 @@
     <section class="footer">
         <div class="container text-center">
             <p>Design by Ola Group</p>
-            <p>Redevelopment by Wenceslao Group</p>
+            <p>Redeveloped by Wenceslao Group</p>
         </div>
     </section>
     <!-- footer Section Ends Here -->

@@ -119,14 +119,14 @@
                     if($res2==true)
                     {
                         // Query Executed and Order Saved
-                        $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
-                        header('location:'.SITEURL);
+                        $_SESSION['order'] = "<div class='success text-center'>Food Added to Cart.</div>";
+                        echo "<script>window.location.href='".SITEURL."index.php'</script>";
                     }
                     else
                     {
                         // Failed to Save Order
-                        $_SESSION['order'] = "<div class='error text-center'>Failed to Order Food.</div>";
-                        header('location:'.SITEURL);
+                        $_SESSION['order'] = "<div class='error text-center'>Failed to Add Food to Cart.</div>";
+                        echo "<script>window.location.href='".SITEURL."index.php'</script>";
                     }
 
                 }

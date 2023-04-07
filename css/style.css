@@ -111,6 +111,50 @@ fieldset {
   padding: 1%;
   font-weight: bold;
 }
+/* Style the dropdown button */
+.dropbtn {
+  background-color: #fff;
+  color: #5d9e5f;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown{
+  position: relative;
+}
+/* Style the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  text-align: center;
+  color: #5d9e5f;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu when the dropdown button is clicked */
+.show {
+  display: block;
+}
+
 
 /* CSS for Food SEarch Section */
 
@@ -281,11 +325,12 @@ fieldset {
     width: 100%;
   }
 }
-/* CSS for Cartview */
 .cartview-table {
   border: 1px solid white;
   border-collapse: collapse;
+  margin: 0 auto;
 }
+
 
 .cartview-th, .cartview-td {
   border: 1px solid white;

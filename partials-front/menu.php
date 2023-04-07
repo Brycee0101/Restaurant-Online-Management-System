@@ -12,6 +12,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
 
     <!-- Link our CSS file -->
     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+
 </head>
 <?php include('logcheck.php');?>
 <body>
@@ -36,13 +37,14 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
                         <a href="<?php echo SITEURL; ?>foods.php">Foods</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>cartview.php">Cart🛒</a>
-                    </li>
-                    <li>
                         <a href="<?php echo SITEURL; ?>logout.php">Signout</a>
                     </li>
-                    <li>
-                        Welcome, <?php echo $_SESSION['username']; ?>!
+                    <li class="dropdown">
+                            <button class="dropbtn">Welcome, <?php echo $_SESSION['username']; ?>!</button>
+                            <div class="dropdown-content">
+                                <a href="<?php echo SITEURL; ?>cartview.php">Cart🛒</a>
+                                <a href="<?php echo SITEURL; ?>orderview.php">Orders🍣</a>
+                            </div>
                     </li>
                 </ul>
             </div>
@@ -51,3 +53,29 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
         </div>
     </section>
     <!-- Navbar Section Ends Here -->
+
+    <script>
+    // Get the dropdown button
+    var dropdownBtn = document.getElementsByClassName("dropbtn")[0];
+
+    // Get the dropdown content
+    var dropdownContent = document.getElementsByClassName("dropdown-content")[0];
+
+    // Toggle the "show" class when the dropdown button is clicked
+    dropdownBtn.onclick = function() {
+        dropdownContent.classList.toggle("show");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
