@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2023 at 01:39 PM
+-- Generation Time: Apr 07, 2023 at 01:03 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -41,7 +41,7 @@ CREATE TABLE `tbl_admin` (
 INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `pword`) VALUES
 (9, 'Liam Johnson', 'liam', 'E10ADC3949BA59ABBE56E057F20F883E'),
 (10, 'Ramsey', 'ramsey', 'E10ADC3949BA59ABBE56E057F20F883E'),
-(12, 'Administrator', 'admin', 'E10ADC3949BA59ABBE56E057F20F883E');
+(12, 'Administrator', 'admin', '12345');
 
 -- --------------------------------------------------------
 
@@ -52,22 +52,15 @@ INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `pword`) VALUES
 CREATE TABLE `tbl_cart` (
   `cart_id` int(11) NOT NULL,
   `cart_food` varchar(255) DEFAULT NULL,
-  `cart_price` int(11) DEFAULT NULL,
+  `cart_price` decimal(10,2) DEFAULT NULL,
   `cart_qty` int(11) DEFAULT NULL,
-  `cart_total` int(11) DEFAULT NULL,
+  `cart_total` decimal(10,2) DEFAULT NULL,
   `cart_custfname` varchar(255) NOT NULL,
   `cart_custlname` varchar(255) NOT NULL,
   `cart_contact` bigint(20) DEFAULT NULL,
   `cart_email` varchar(255) DEFAULT NULL,
   `cart_address` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_cart`
---
-
-INSERT INTO `tbl_cart` (`cart_id`, `cart_food`, `cart_price`, `cart_qty`, `cart_total`, `cart_custfname`, `cart_custlname`, `cart_contact`, `cart_email`, `cart_address`) VALUES
-(2, 'Mixed Maki Set', 280, 105, 28000, 'Bryce Stephen', 'Halnin', 1234567890, 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991');
 
 -- --------------------------------------------------------
 
@@ -157,14 +150,15 @@ INSERT INTO `tbl_food` (`id`, `title`, `description`, `price`, `image_name`, `ca
 --
 
 CREATE TABLE `tbl_order` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `food` varchar(150) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `total` decimal(10,2) NOT NULL,
+  `order_id` int(10) UNSIGNED NOT NULL,
+  `order_food` varchar(150) NOT NULL,
+  `order_price` decimal(10,2) NOT NULL,
+  `order_qty` int(11) NOT NULL,
+  `order_total` decimal(10,2) NOT NULL,
   `order_date` datetime NOT NULL,
-  `status` varchar(50) NOT NULL,
-  `customer_name` varchar(150) NOT NULL,
+  `order_status` varchar(50) NOT NULL,
+  `order_custfname` varchar(255) NOT NULL,
+  `order_custlname` varchar(255) NOT NULL,
   `customer_contact` varchar(20) NOT NULL,
   `customer_email` varchar(150) NOT NULL,
   `customer_address` varchar(255) NOT NULL
@@ -174,9 +168,15 @@ CREATE TABLE `tbl_order` (
 -- Dumping data for table `tbl_order`
 --
 
-INSERT INTO `tbl_order` (`id`, `food`, `price`, `qty`, `total`, `order_date`, `status`, `customer_name`, `customer_contact`, `customer_email`, `customer_address`) VALUES
-(12, 'Salmon Maki Roll', '250.00', 1, '250.00', '2023-02-02 06:09:23', 'Ordered', 'cholo', '241234134', 'eboc@ggmial.com', 'house'),
-(13, 'Salmon and Tuna Maki Roll', '250.00', 12, '3000.00', '2023-03-08 03:24:47', 'Ordered', 'Joseph', '12345', 'jwenceslao@sskin.com', 'asdasd');
+INSERT INTO `tbl_order` (`order_id`, `order_food`, `order_price`, `order_qty`, `order_total`, `order_date`, `order_status`, `order_custfname`, `order_custlname`, `customer_contact`, `customer_email`, `customer_address`) VALUES
+(12, 'Salmon Maki Roll', '250.00', 1, '250.00', '2023-02-02 06:09:23', 'Ordered', 'Bryce Stephen', 'Halnin', '241234134', 'eboc@ggmial.com', 'house'),
+(13, 'Salmon and Tuna Maki Roll', '250.00', 12, '3000.00', '2023-03-08 03:24:47', 'Ordered', 'Joseph', '', '12345', 'jwenceslao@sskin.com', 'asdasd'),
+(16, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 10:46:44', 'Ordered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
+(18, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:13:40', 'Ordered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
+(35, 'Tuna Maki Roll', '250.00', 1, '250.00', '2023-04-07 11:43:10', 'Ordered', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
+(36, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:55:18', 'Ordered', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
+(37, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:55:49', 'Ordered', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
+(38, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 12:57:52', 'Ordered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991');
 
 -- --------------------------------------------------------
 
@@ -237,7 +237,7 @@ ALTER TABLE `tbl_food`
 -- Indexes for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `tbl_user`
@@ -259,7 +259,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tbl_category`
@@ -283,7 +283,7 @@ ALTER TABLE `tbl_food`
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
