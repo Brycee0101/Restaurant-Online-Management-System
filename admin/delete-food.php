@@ -47,14 +47,18 @@
         if($res==true)
         {
             //Food Deleted
-            $_SESSION['delete'] = "<div class='success'>Food Deleted Successfully.</div>";\
-            header('location:'.SITEURL.'admin/manage-food.php');
+            echo "<script>
+                    alert('Food Deleted Successfully.');
+                    window.location.href='".SITEURL."admin/manage-profile.php';
+                </script>";
         }
         else
         {
             //Failed to Delete Food
-            $_SESSION['delete'] = "<div class='error'>Failed to Delete Food.</div>";\
-            header('location:'.SITEURL.'admin/manage-food.php');
+            echo "<script>
+                    alert('Failed to Delete Food.');
+                    window.location.href='".SITEURL."admin/manage-profile.php';
+                </script>";
         }
 
         

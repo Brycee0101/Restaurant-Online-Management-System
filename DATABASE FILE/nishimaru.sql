@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2023 at 01:03 PM
+-- Generation Time: Apr 08, 2023 at 11:28 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -39,9 +39,10 @@ CREATE TABLE `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `pword`) VALUES
-(9, 'Liam Johnson', 'liam', 'E10ADC3949BA59ABBE56E057F20F883E'),
-(10, 'Ramsey', 'ramsey', 'E10ADC3949BA59ABBE56E057F20F883E'),
-(12, 'Administrator', 'admin', '12345');
+(9, 'Liam Johnson', 'liam', '12345'),
+(10, 'Ramsey', 'ramsey', '12345'),
+(12, 'Administrator', 'admin', ''),
+(13, 'Halnin', 'admin2', '12345');
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,7 @@ CREATE TABLE `tbl_food` (
 --
 
 INSERT INTO `tbl_food` (`id`, `title`, `description`, `price`, `image_name`, `category_id`, `featured`, `active`) VALUES
-(4, 'Tuna Maki Roll', 'Consists of tuna, cucumber, or avocado depending on the customer\'s request.', '250.00', 'tuna.png', 5, 'No', 'Yes'),
+(4, 'Tuna Maki Roll', 'Consists of tuna, cucumber, or avocado depending on the customer request.', '250.00', 'tuna.png', 10, 'No', 'Yes'),
 (5, 'Mixed Maki Set', 'Consists of tuna, salmon, squid, yellow tail, striped bass, cucumber, or avocado, depending on the customer\'s request. \r\n\r\n', '280.00', 'mixedmakiset.png', 4, 'No', 'Yes'),
 (9, 'Salmon Maki Roll', 'Consists of salmon, cucumber, or avocado, depending on the customer\'s request. ', '250.00', 'salmon.png', 9, 'Yes', 'Yes'),
 (10, 'Salmon and Tuna Maki Roll', 'Consists of tuna, salmon, cucumber, or avocado depending on the customer\'s request.', '250.00', 'salmonandtuna.png', 5, 'Yes', 'Yes'),
@@ -174,9 +175,9 @@ INSERT INTO `tbl_order` (`order_id`, `order_food`, `order_price`, `order_qty`, `
 (16, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 10:46:44', 'Ordered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
 (18, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:13:40', 'Ordered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
 (35, 'Tuna Maki Roll', '250.00', 1, '250.00', '2023-04-07 11:43:10', 'Ordered', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
-(36, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:55:18', 'Ordered', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
-(37, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:55:49', 'Ordered', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
-(38, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 12:57:52', 'Ordered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991');
+(36, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:55:18', 'On Delivery', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
+(37, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:55:49', 'Cancelled', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
+(38, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 12:57:52', 'Delivered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991');
 
 -- --------------------------------------------------------
 
@@ -253,7 +254,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_cart`

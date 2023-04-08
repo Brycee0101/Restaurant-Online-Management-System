@@ -131,10 +131,10 @@
                 //echo "Clicked";
                 
                 //1. Get the DAta from Form
-                $title = $_POST['title'];
-                $description = $_POST['description'];
-                $price = $_POST['price'];
-                $category = $_POST['category'];
+                $title = mysqli_real_escape_string($db, $_POST['title']);
+                $description = mysqli_real_escape_string($db, $_POST['description']);
+                $price = mysqli_real_escape_string($db, $_POST['price']);
+                $category = mysqli_real_escape_string($db, $_POST['category']);
 
                 //Check whether radion button for featured and active are checked or not
                 if(isset($_POST['featured']))
@@ -190,8 +190,10 @@
                         {
                             //Failed to Upload the image
                             //REdirect to Add Food Page with Error Message
-                            $_SESSION['upload'] = "<div class='error'>Failed to Upload Image.</div>";
-                            header('location:'.SITEURL.'admin/add-food.php');
+                            echo "<script>
+                                    alert('Failed to Upload Image.');
+                                    window.location.href='".SITEURL."admin/manage-food.php';
+                                </script>";
                             //STop the process
                             die();
                         }
@@ -226,14 +228,18 @@
                 if($res2 == true)
                 {
                     //Data inserted Successfullly
-                    $_SESSION['add'] = "<div class='success'>Food Added Successfully.</div>";
-                    header('location:'.SITEURL.'admin/manage-food.php');
+                    echo "<script>
+                            alert('Food Added Successfully.');
+                            window.location.href='".SITEURL."admin/manage-food.php';
+                        </script>";
                 }
                 else
                 {
                     //FAiled to Insert Data
-                    $_SESSION['add'] = "<div class='error'>Failed to Add Food.</div>";
-                    header('location:'.SITEURL.'admin/manage-food.php');
+                    echo "<script>
+                            alert('Failed to Add Food.');
+                            window.location.href='".SITEURL."admin/manage-food.php';
+                        </script>";
                 }
 
                 

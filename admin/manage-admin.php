@@ -1,10 +1,12 @@
-<?php include('partials/menu.php'); ?>
+<?php include('partials/menu.php'); 
+define('SITEURL', 'http://localhost/NishiMaru/');
+?>
 
 
         <!-- Main Content Section Starts -->
         <div class="main-content">
             <div class="wrapper">
-                <h1>Manage Admin</h1>
+                <h1>Manage Administrators</h1>
 
                 <br />
 
@@ -49,16 +51,16 @@
                 <br><br><br>
 
                 <!-- Button to Add Admin -->
-                <a href="add-admin.php" class="btn-primary">Add Admin</a>
+                <a href="add-admin.php" class="btn-primary">Add New Admin</a>
 
                 <br /><br /><br />
 
                 <table class="tbl-full">
                     <tr>
-                        <th>S.N.</th>
-                        <th>Full Name</th>
-                        <th>Username</th>
-                        <th>Actions</th>
+                        <th style="text-align: center">Admin ID</th>
+                        <th style="text-align: center">Full Name</th>
+                        <th style="text-align: center">Username</th>
+                        <th style="text-align: center">Actions</th>
                     </tr>
 
                     
@@ -94,12 +96,10 @@
                                     ?>
                                     
                                     <tr>
-                                        <td><?php echo $sn++; ?>. </td>
-                                        <td><?php echo $full_name; ?></td>
-                                        <td><?php echo $username; ?></td>
-                                        <td>
-                                            <a href="<?php echo SITEURL; ?>admin/update-password.php?id=<?php echo $id; ?>" class="btn-primary">Change Password</a>
-                                            <a href="<?php echo SITEURL; ?>admin/update-admin.php?id=<?php echo $id; ?>" class="btn-secondary">Update Admin</a>
+                                        <td style="text-align: center"><?php echo $sn++; ?></td>
+                                        <td style="text-align: center"><?php echo $full_name; ?></td>
+                                        <td style="text-align: center"><?php echo $username; ?></td>
+                                        <td style="text-align: center">
                                             <a href="<?php echo SITEURL; ?>admin/delete-admin.php?id=<?php echo $id; ?>" class="btn-danger">Delete Admin</a>
                                         </td>
                                     </tr>

@@ -18,7 +18,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');
 
                 //Get all other details based on this id
                 //SQL Query to get the order details
-                $sql = "SELECT * FROM tbl_order WHERE id=$id";
+                $sql = "SELECT * FROM tbl_order WHERE order_id=$id";
                 //Execute Query
                 $res = mysqli_query($db, $sql);
                 //Count Rows
@@ -29,11 +29,11 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                     //Detail Availble
                     $row=mysqli_fetch_assoc($res);
 
-                    $food = $row['food'];
-                    $price = $row['price'];
-                    $qty = $row['qty'];
-                    $status = $row['status'];
-                    $customer_name = $row['customer_name'];
+                    $food = $row['order_food'];
+                    $price = $row['order_price'];
+                    $qty = $row['order_qty'];
+                    $status = $row['order_status'];
+                    $customer_name = $row['order_custfname'] ." ". $row['order_custlname'];
                     $customer_contact = $row['customer_contact'];
                     $customer_email = $row['customer_email'];
                     $customer_address= $row['customer_address'];
@@ -71,14 +71,14 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                 <tr>
                     <td>Qty</td>
                     <td>
-                        <input type="number" name="qty" value="<?php echo $qty; ?>">
+                        <?php echo $qty; ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td>Status</td>
                     <td>
-                        <select name="status">
+                        <select name="status" style="width: 100%">
                             <option <?php if($status=="Ordered"){echo "selected";} ?> value="Ordered">Ordered</option>
                             <option <?php if($status=="On Delivery"){echo "selected";} ?> value="On Delivery">On Delivery</option>
                             <option <?php if($status=="Delivered"){echo "selected";} ?> value="Delivered">Delivered</option>
@@ -90,28 +90,28 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                 <tr>
                     <td>Customer Name: </td>
                     <td>
-                        <input type="text" name="customer_name" value="<?php echo $customer_name; ?>">
+                        <?php echo $customer_name; ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td>Customer Contact: </td>
                     <td>
-                        <input type="text" name="customer_contact" value="<?php echo $customer_contact; ?>">
+                        <?php echo $customer_contact; ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td>Customer Email: </td>
                     <td>
-                        <input type="text" name="customer_email" value="<?php echo $customer_email; ?>">
+                        <?php echo $customer_email; ?>
                     </td>
                 </tr>
 
                 <tr>
                     <td>Customer Address: </td>
                     <td>
-                        <textarea name="customer_address" cols="30" rows="5"><?php echo $customer_address; ?></textarea>
+                        <?php echo $customer_address; ?>
                     </td>
                 </tr>
 
@@ -134,30 +134,11 @@ define('SITEURL', 'http://localhost/NishiMaru/');
             {
                 //echo "Clicked";
                 //Get All the Values from Form
-                $id = $_POST['id'];
-                $price = $_POST['price'];
-                $qty = $_POST['qty'];
-
-                $total = $price * $qty;
 
                 $status = $_POST['status'];
 
-                $customer_name = $_POST['customer_name'];
-                $customer_contact = $_POST['customer_contact'];
-                $customer_email = $_POST['customer_email'];
-                $customer_address = $_POST['customer_address'];
-
                 //Update the Values
-                $sql2 = "UPDATE tbl_order SET 
-                    qty = $qty,
-                    total = $total,
-                    status = '$status',
-                    customer_name = '$customer_name',
-                    customer_contact = '$customer_contact',
-                    customer_email = '$customer_email',
-                    customer_address = '$customer_address'
-                    WHERE id=$id
-                ";
+                $sql2 = "UPDATE tbl_order SET order_status = '$status'WHERE order_id=$id";
 
                 //Execute the Query
                 $res2 = mysqli_query($db, $sql2);
@@ -167,14 +148,18 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                 if($res2==true)
                 {
                     //Updated
-                    $_SESSION['update'] = "<div class='success'>Order Updated Successfully.</div>";
-                    header('location:'.SITEURL.'admin/manage-order.php');
+                    echo "<script>
+                            alert('Order Updated Successfully.');
+                            window.location.href='".SITEURL."admin/manage-order.php';
+                        </script>";
                 }
                 else
                 {
                     //Failed to Update
-                    $_SESSION['update'] = "<div class='error'>Failed to Update Order.</div>";
-                    header('location:'.SITEURL.'admin/manage-order.php');
+                    echo "<script>
+                            alert('Failed to Update Order.');
+                            window.location.href='".SITEURL."admin/manage-order.php';
+                        </script>";
                 }
             }
         ?>

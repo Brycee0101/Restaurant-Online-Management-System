@@ -13,7 +13,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                 $id=$_GET['id'];
             }
         ?>
-
+        
         <form action="" method="POST">
         
             <table class="tbl-30">
@@ -60,14 +60,13 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                 //echo "CLicked";
 
                 //1. Get the DAta from Form
-                $id=$_POST['id'];
-                $current_password = md5($_POST['current_password']);
-                $new_password = md5($_POST['new_password']);
-                $confirm_password = md5($_POST['confirm_password']);
+                $current_password = mysqli_real_escape_string($db, $_POST['current_password']); 
+                $new_password = mysqli_real_escape_string($db, $_POST['new_password']);
+                $confirm_password = mysqli_real_escape_string($db, $_POST['confirm_password']);
 
 
                 //2. Check whether the user with current ID and Current Password Exists or Not
-                $sql = "SELECT * FROM tbl_admin WHERE id=$id AND password='$current_password'";
+                $sql = "SELECT * FROM tbl_admin WHERE id=$id";
 
                 //Execute the Query
                 $res = mysqli_query($db, $sql);
@@ -87,7 +86,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                         {
                             //Update the Password
                             $sql2 = "UPDATE tbl_admin SET 
-                                password='$new_password' 
+                                pword='$new_password' 
                                 WHERE id=$id
                             ";
 
@@ -99,34 +98,38 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                             {
                                 //Display Succes Message
                                 //REdirect to Manage Admin Page with Success Message
-                                $_SESSION['change-pwd'] = "<div class='success'>Password Changed Successfully. </div>";
-                                //Redirect the User
-                                header('location:'.SITEURL.'admin/manage-admin.php');
+                                echo "<script>
+                                        alert('Password Changed Successfully');
+                                        window.location.href='".SITEURL."admin/manage-profile.php';
+                                    </script>";
+
                             }
                             else
                             {
                                 //Display Error Message
                                 //REdirect to Manage Admin Page with Error Message
-                                $_SESSION['change-pwd'] = "<div class='error'>Failed to Change Password. </div>";
-                                //Redirect the User
-                                header('location:'.SITEURL.'admin/manage-admin.php');
+                                echo "<script>
+                                        alert('Failed to Change Password.');
+                                        window.location.href='".SITEURL."admin/manage-profile.php';
+                                    </script>";
                             }
                         }
                         else
                         {
                             //REdirect to Manage Admin Page with Error Message
-                            $_SESSION['pwd-not-match'] = "<div class='error'>Password Did not Patch. </div>";
-                            //Redirect the User
-                            header('location:'.SITEURL.'admin/manage-admin.php');
-
+                            echo "<script>
+                                        alert('Password Did not Match.');
+                                        window.location.href='".SITEURL."admin/manage-profile.php';
+                                    </script>";
                         }
                     }
                     else
                     {
                         //User Does not Exist Set Message and REdirect
-                        $_SESSION['user-not-found'] = "<div class='error'>User Not Found. </div>";
-                        //Redirect the User
-                        header('location:'.SITEURL.'admin/manage-admin.php');
+                        echo "<script>
+                                        alert('User Not Found.');
+                                        window.location.href='".SITEURL."admin/manage-profile.php';
+                                    </script>";
                     }
                 }
 

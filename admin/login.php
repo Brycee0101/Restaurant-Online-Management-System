@@ -1,5 +1,4 @@
 <?php include('../config/constants.php'); 
-
 define('SITEURL', 'http://localhost/NishiMaru/');
 ?>
 
@@ -64,15 +63,16 @@ define('SITEURL', 'http://localhost/NishiMaru/');
 
         //3. Execute the Query
         $result = mysqli_query($db,$query) or die('unable to connect');
-
+        
         //4. COunt rows to check whether the user exists or not
         $rows = mysqli_num_rows($result);
 
         while($row = $result->fetch_assoc()){
-				
+            session_start();
             $_SESSION['username'] = $row['username'];
             $_SESSION['password'] = $row['pword'];
-            session_start();
+            $_SESSION['name'] = $row['full_name'];
+            $_SESSION['id'] = $row['id'];
             echo "<script>window.location.href='".SITEURL."admin/index.php'</script>";
         }
 

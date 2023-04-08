@@ -89,9 +89,6 @@ if(isset($_POST['submit'])){
 		if ($_SESSION['type'] == 'Customer'){
 			header("Location: index.php");
 		  }
-		else{
-			echo '<script>alert("Welcome to Geeks for Geeks")</script>';
-	  }
  	}echo '<script>alert("Username or Password incorrect Please Try Again")</script>';
 }
 ?>

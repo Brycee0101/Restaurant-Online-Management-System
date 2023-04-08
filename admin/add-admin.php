@@ -1,15 +1,17 @@
-<?php include('partials/menu.php'); ?>
+<?php include('partials/menu.php'); 
+define('SITEURL', 'http://localhost/NishiMaru/');
+?>
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Add Admin</h1>
+        <h1>Add New Nishi Maru Bento Admin</h1>
 
         <br><br>
 
         <?php 
-            if(isset($_SESSION['add'])) //Checking whether the SEssion is Set of Not
+            if(isset($_SESSION['add'])) //Checking whether the Session is Set or Not
             {
-                echo $_SESSION['add']; //Display the SEssion Message if SEt
+                echo $_SESSION['add']; //Display the Session Message is SEt
                 unset($_SESSION['add']); //Remove Session Message
             }
         ?>
@@ -20,21 +22,19 @@
                 <tr>
                     <td>Full Name: </td>
                     <td>
-                        <input type="text" name="full_name" placeholder="Enter Your Name">
+                        <input type="text" name="full_name" placeholder="New Admin Name">
                     </td>
                 </tr>
-
                 <tr>
                     <td>Username: </td>
                     <td>
-                        <input type="text" name="username" placeholder="Your Username">
+                        <input type="text" name="username" placeholder="New Admin Username">
                     </td>
                 </tr>
-
                 <tr>
                     <td>Password: </td>
                     <td>
-                        <input type="password" name="password" placeholder="Your Password">
+                        <input type="password" name="password" placeholder="Password for New Admin">
                     </td>
                 </tr>
 
@@ -74,7 +74,7 @@
         $sql = "INSERT INTO tbl_admin SET 
             full_name='$full_name',
             username='$username',
-            password='$password'
+            pword='$password'
         ";
  
         //3. Executing Query and Saving Data into Datbase
