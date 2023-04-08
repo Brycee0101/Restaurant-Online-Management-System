@@ -36,14 +36,12 @@ define('SITEURL', 'http://localhost/NishiMaru/');?>
                     <li>
                         <a href="<?php echo SITEURL; ?>foods.php">Foods</a>
                     </li>
-                    <li>
-                        <a href="<?php echo SITEURL; ?>logout.php">Signout</a>
-                    </li>
                     <li class="dropdown">
-                            <button class="dropbtn">Welcome, <?php echo $_SESSION['username']; ?>!</button>
+                            <button class="dropbtn"> 🔽 Welcome, <?php echo $_SESSION['username']; ?>!</button>
                             <div class="dropdown-content">
                                 <a href="<?php echo SITEURL; ?>cartview.php">Cart🛒</a>
                                 <a href="<?php echo SITEURL; ?>orderview.php">Orders🍣</a>
+                                <a href="<?php echo SITEURL; ?>logout.php">Signout</a>
                             </div>
                     </li>
                 </ul>

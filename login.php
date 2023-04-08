@@ -89,6 +89,13 @@ if(isset($_POST['submit'])){
 		if ($_SESSION['type'] == 'Customer'){
 			header("Location: index.php");
 		  }
- 	}echo '<script>alert("Username or Password incorrect Please Try Again")</script>';
+
+		  if (strlen($username) > 255 || strlen($password) > 255) {
+			echo '<script>alert("Username or Password is too long. Please try again.")</script>';
+		} else {
+			// Perform the login check
+		}
+		
+ 	}echo '<script>alert("Username or Password Incorrect Please Try Again")</script>';
 }
 ?>

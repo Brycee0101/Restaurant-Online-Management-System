@@ -63,13 +63,21 @@
 	</section>
 
 <?php
-    if (isset($_POST['checkout'])) {
+if (isset($_POST['checkout'])) {
+    // Check if there are any items in the cart
+    $select_cart_query = "SELECT * FROM tbl_cart WHERE cart_custfname = '$fname' AND cart_custlname = '$lname'";
+    $result_cart = mysqli_query($db, $select_cart_query);
+    if (mysqli_num_rows($result_cart) == 0) {
+        echo "<script>alert('Your Cart is EMPTY.\\n\\n Please add items to your cart before checking out.');</script>";
+    } else {
         if (checkoutCart($db, $fname, $lname)) {
             echo "<script>alert('Food Ordered Successfully.'); window.location.href='".SITEURL."orderview.php'</script>";
         } else {
             echo "<script>alert('Order Failed to Checkout.'); window.location.href='".SITEURL."orderview.php'</script>";
         }
     }
+}
+
 
     
 
