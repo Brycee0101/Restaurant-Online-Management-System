@@ -1,5 +1,5 @@
 <?php 
-
+define('SITEURL', 'http://localhost/NishiMaru/');
     //Include constants.php file here
     include('../config/constants.php');
 
@@ -18,17 +18,19 @@
         //Query Executed Successully and Admin Deleted
         //echo "Admin Deleted";
         //Create SEssion Variable to Display Message
-        $_SESSION['delete'] = "<div class='success'>Admin Deleted Successfully.</div>";
-        //Redirect to Manage Admin Page
-        header('location:'.SITEURL.'admin/manage-admin.php');
+        echo "<script>
+                 alert('Admin Deleted');
+                window.location.href='".SITEURL."admin/manage-admin.php';
+            </script>";
     }
     else
     {
         //Failed to Delete Admin
         //echo "Failed to Delete Admin";
-
-        $_SESSION['delete'] = "<div class='error'>Failed to Delete Admin. Try Again Later.</div>";
-        header('location:'.SITEURL.'admin/manage-admin.php');
+        echo "<script>
+                alert('Failed to Delete Admin. Try again later.');
+                window.location.href='".SITEURL."admin/manage-food.php';
+            </script>";
     }
 
     //3. Redirect to Manage Admin page with message (success/error)

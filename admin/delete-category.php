@@ -1,6 +1,7 @@
 <?php 
     //Include Constants File
     include('../config/constants.php');
+    define('SITEURL', 'http://localhost/NishiMaru/');
 
     //echo "Delete Page";
     //Check whether the id and image_name value is set or not

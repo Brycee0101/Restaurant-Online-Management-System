@@ -96,7 +96,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                                     ?>
                                     
                                     <tr>
-                                        <td style="text-align: center"><?php echo $sn++; ?></td>
+                                        <td style="text-align: center"><?php echo $id; ?></td>
                                         <td style="text-align: center"><?php echo $full_name; ?></td>
                                         <td style="text-align: center"><?php echo $username; ?></td>
                                         <td style="text-align: center">

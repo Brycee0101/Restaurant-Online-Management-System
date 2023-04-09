@@ -76,5 +76,9 @@ define('SITEURL', 'http://localhost/NishiMaru/');
             echo "<script>window.location.href='".SITEURL."admin/index.php'</script>";
         }
 
+        // Display an error message if the username or password is incorrect
+        if ($rows == 0) {
+            echo "<script>alert('Username or Password Incorrect. Please Try Again.');</script>";
+        }
     }
 ?>

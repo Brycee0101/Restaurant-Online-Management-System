@@ -1,6 +1,7 @@
 <?php 
     //Include COnstants Page
     include('../config/constants.php');
+    define('SITEURL', 'http://localhost/NishiMaru/');
 
     //echo "Delete Food Page";
 
@@ -28,9 +29,10 @@
             if($remove==false)
             {
                 //Failed to Remove image
-                $_SESSION['upload'] = "<div class='error'>Failed to Remove Image File.</div>";
-                //REdirect to Manage Food
-                header('location:'.SITEURL.'admin/manage-food.php');
+                echo "<script>
+                    alert('Failed to Remove Image File');
+                    window.location.href='".SITEURL."admin/manage-food.php';
+                </script>";
                 //Stop the Process of Deleting Food
                 die();
             }
@@ -68,8 +70,10 @@
     {
         //Redirect to Manage Food Page
         //echo "REdirect";
-        $_SESSION['unauthorize'] = "<div class='error'>Unauthorized Access.</div>";
-        header('location:'.SITEURL.'admin/manage-food.php');
+        echo "<script>
+                    alert('Unauthorized Access');
+                    window.location.href='".SITEURL."admin/manage-food.php';
+                </script>";
     }
 
 ?>

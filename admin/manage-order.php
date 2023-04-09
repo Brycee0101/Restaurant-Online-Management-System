@@ -19,7 +19,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');
 
                 <table class="tbl-full">
                     <tr>
-                        <th width="5%">#</th>
+                        <th width="5%">ID</th>
                         <th width="10%">Order Date</th>
                         <th width="10%">Food</th>
                         <th width="5%">Price</th>
@@ -35,7 +35,17 @@ define('SITEURL', 'http://localhost/NishiMaru/');
 
                     <?php 
                         //Get all the orders from database
-                        $sql = "SELECT * FROM tbl_order ORDER BY order_id DESC"; // DIsplay the Latest Order at First
+                        $sql = "SELECT * FROM tbl_order
+                        ORDER BY
+                          CASE order_status
+                            WHEN 'Ordered' THEN 1
+                            WHEN 'On Delivery' THEN 2
+                            WHEN 'Delivered' THEN 3
+                            WHEN 'Cancelled' THEN 4
+                            ELSE 5
+                          END ASC,
+                          order_id DESC
+                        "; // DIsplay the Latest Order at First
                         //Execute Query
                         $res = mysqli_query($db, $sql);
                         //Count the Rows
@@ -64,7 +74,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                                 ?>
 
                                     <tr>
-                                        <td><?php echo $sn++; ?> </td>
+                                        <td><?php echo $id; ?> </td>
                                         <td><?php echo $order_date; ?></td>
                                         <td><?php echo $food; ?></td>
                                         <td><?php echo 'PHP '.$price; ?></td>
@@ -100,7 +110,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                                         <td><?php echo $customer_email; ?></td>
                                         <td><?php echo $customer_address; ?></td>
                                         <td>
-                                            <a href="<?php echo SITEURL; ?>admin/update-order.php?id=<?php echo $id; ?>" class="btn-secondary">Update Order</a>
+                                            <a href="<?php echo SITEURL; ?>admin/update-order.php?id=<?php echo $id; ?>" class="btn-secondary">Update Status</a>
                                         </td>
                                     </tr>
 

@@ -20,14 +20,14 @@ define('SITEURL', 'http://localhost/NishiMaru/');
                 <tr>
                     <td>Current Password: </td>
                     <td>
-                        <input type="password" name="current_password" placeholder="Current Password">
+                        <input type="password" name="current_password" placeholder="Current Password" required>
                     </td>
                 </tr>
 
                 <tr>
                     <td>New Password:</td>
                     <td>
-                        <input type="password" name="new_password" placeholder="New Password">
+                        <input type="password" name="new_password" placeholder="New Password" required>
                     </td>
                 </tr>
 

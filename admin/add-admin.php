@@ -68,7 +68,7 @@ define('SITEURL', 'http://localhost/NishiMaru/');
         //1. Get the Data from form
         $full_name = $_POST['full_name'];
         $username = $_POST['username'];
-        $password = md5($_POST['password']); //Password Encryption with MD5
+        $password = mysqli_real_escape_string($db, $_POST['password']);  //Password Encryption with MD5
 
         //2. SQL Query to Save the data into database
         $sql = "INSERT INTO tbl_admin SET 
@@ -86,18 +86,20 @@ define('SITEURL', 'http://localhost/NishiMaru/');
             //Data Inserted
             //echo "Data Inserted";
             //Create a Session Variable to Display Message
-            $_SESSION['add'] = "<div class='success'>Admin Added Successfully.</div>";
-            //Redirect Page to Manage Admin
-            header("location:".SITEURL.'admin/manage-admin.php');
+            echo "<script>
+                alert('Admin Added Successfully');
+                window.location.href='".SITEURL."admin/manage-admin.php';
+            </script>";
         }
         else
         {
             //FAiled to Insert DAta
             //echo "Faile to Insert Data";
             //Create a Session Variable to Display Message
-            $_SESSION['add'] = "<div class='error'>Failed to Add Admin.</div>";
-            //Redirect Page to Add Admin
-            header("location:".SITEURL.'admin/add-admin.php');
+            echo "<script>
+                alert('Failed to Add Admin');
+                window.location.href='".SITEURL."admin/manage-admin.php';
+            </script>";
         }
 
     }

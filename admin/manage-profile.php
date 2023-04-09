@@ -22,7 +22,7 @@
                     </p> 
                 </div>
                 <!-- Button to Delete Account -->
-                <a href="<?php echo SITEURL; ?>admin/delete-admin.php?id=<?php echo $id; ?>" class="btn-danger">Delete Account</a>
+                <a href="<?php echo SITEURL; ?>admin/delete-account.php?id=<?php echo $id; ?>" class="btn-danger">Delete Account</a>
                 <br><br><br>
             </div>
         </div>
