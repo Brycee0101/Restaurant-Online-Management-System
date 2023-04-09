@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2023 at 11:28 AM
+-- Generation Time: Apr 09, 2023 at 03:01 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -41,8 +41,7 @@ CREATE TABLE `tbl_admin` (
 INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `pword`) VALUES
 (9, 'Liam Johnson', 'liam', '12345'),
 (10, 'Ramsey', 'ramsey', '12345'),
-(12, 'Administrator', 'admin', ''),
-(13, 'Halnin', 'admin2', '12345');
+(22, 'Halnin', 'admin', '12345');
 
 -- --------------------------------------------------------
 
@@ -172,12 +171,14 @@ CREATE TABLE `tbl_order` (
 INSERT INTO `tbl_order` (`order_id`, `order_food`, `order_price`, `order_qty`, `order_total`, `order_date`, `order_status`, `order_custfname`, `order_custlname`, `customer_contact`, `customer_email`, `customer_address`) VALUES
 (12, 'Salmon Maki Roll', '250.00', 1, '250.00', '2023-02-02 06:09:23', 'Ordered', 'Bryce Stephen', 'Halnin', '241234134', 'eboc@ggmial.com', 'house'),
 (13, 'Salmon and Tuna Maki Roll', '250.00', 12, '3000.00', '2023-03-08 03:24:47', 'Ordered', 'Joseph', '', '12345', 'jwenceslao@sskin.com', 'asdasd'),
-(16, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 10:46:44', 'Ordered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
-(18, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:13:40', 'Ordered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
+(16, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 10:46:44', 'Cancelled', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
+(18, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:13:40', 'Cancelled', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
 (35, 'Tuna Maki Roll', '250.00', 1, '250.00', '2023-04-07 11:43:10', 'Ordered', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
 (36, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:55:18', 'On Delivery', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
 (37, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 11:55:49', 'Cancelled', 'Joseph ', 'Wenceslao', '1234567890', 'jwenceslao@sskin.com', 'Pablo Ocampo, Sr. Exit, Makati 1702'),
-(38, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 12:57:52', 'Delivered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991');
+(38, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-07 12:57:52', 'Delivered', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
+(39, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-08 11:39:53', 'Cancelled', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991'),
+(40, 'Mixed Maki Set', '280.00', 1, '280.00', '2023-04-08 11:50:21', 'Cancelled', 'Bryce Stephen', 'Halnin', '1234567890', 'bsphalnin@asdasa', 'Pablo, Ocampo, Makati 1991');
 
 -- --------------------------------------------------------
 
@@ -254,13 +255,13 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `tbl_category`
@@ -284,7 +285,7 @@ ALTER TABLE `tbl_food`
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
