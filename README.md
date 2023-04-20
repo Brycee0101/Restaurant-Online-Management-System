@@ -35,3 +35,12 @@ Joseph Wenceslao<br>
 
 ## ⬇️ Installation
 
+1. Install XAMPP on your computer.
+2. Clone the repository using Git.
+3. Copy the repository folder into the htdocs folder in your XAMPP installation directory.
+4. Open XAMPP and start Apache and MySQL.
+5. Import the database file included in the repository into phpMyAdmin.
+6. Edit the config.php file with your database credentials.
+7. Open your web browser and navigate to localhost/{repository-folder-name} to view the website.
+
+Note: Before installing, make sure that your computer meets the minimum requirements for the software used.
